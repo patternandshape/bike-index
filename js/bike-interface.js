@@ -1,18 +1,13 @@
+var displayMissingBike = require ('../js/bike.js').displayMissingBike;
+
 $(document).ready(function() {
   $('#missingBike').click(function() {
-      city = $('#yourCity').val();
-      $('#yourCity').val("");
-      $.get('https://bikeindex.org:443/api/v2/bikes_search/stolen?page=1' + city).then(function(response){
-        if (response.cod ===200) {
-          $('#bikeList').text("<li>" + "</li>");
-        } else {
-          $('#bikeList').text("invalid city");
-        }
-      });
-      // .fail(function(error) {
-      //   $('.showWeather').text(error.responseJSON.message);
-      // });
-
-      event.preventDefault();
-  });
+    //get city from user
+    var city = $('#yourCity').val();
+    //clear out city field
+    $('#yourCity').val("");
+    //run api call
+    displayMissingBike(city);
+    event.preventDefault();
+});
 });
